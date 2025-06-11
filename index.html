@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pendaftaran TNI AL - Dedi Riyanto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+  /* CSS RESET */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+  }
+  /* Material Icons */
+  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+  /* LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+  }
+  header {
+    background: #0f172a;
+    color: #f8fafc;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgb(15 23 42 / 0.4);
+    user-select: none;
+  }
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 16px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #38bdf8; /* cyan-400 */
+    letter-spacing: 0.1em;
+    cursor: default;
+  }
+  nav.desktop-nav {
+    display: none;
+  }
+  nav.desktop-nav a {
+    margin-left: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #f8fafc;
+    position: relative;
+  }
+  nav.desktop-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #38bdf8;
+    transition: width 0.3s ease;
+  }
+  nav.desktop-nav a:hover::after,
+  nav.desktop-nav a:focus-visible::after {
+    width: 100%;
+  }
+  button.mobile-menu-button {
+    background: none;
+    border: none;
+    color: #38bdf8;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* MOBILE NAV */
+  nav.mobile-nav {
+    background: #0f172a;
+    display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  nav.mobile-nav a {
+    color: #f8fafc;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  nav.mobile-nav a:hover,
+  nav.mobile-nav a:focus {
+    background: #1e293b;
+    outline: none;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, #0369a1, #0ea5e9);
+    color: #f8fafc;
+    padding: 80px 16px 120px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    max-width: 600px;
+    margin: 0 auto 1rem auto;
+    line-height: 1.1;
+  }
+  .hero p {
+    font-size: 1.125rem;
+    max-width: 550px;
+    margin: 0 auto 2.5rem auto;
+    color: #bae6fd;
+  }
+  .hero button {
+    background-color: #f8fafc;
+    color: #0369a1;
+    border: none;
+    padding: 16px 48px;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgb(248 250 252 / 0.6);
+  }
+  .hero button:hover,
+  .hero button:focus-visible {
+    background-color: #bae6fd;
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* REGISTRATION SECTION */
+  .registration {
+    background: #fff;
+    padding: 48px 16px 80px;
+    margin-top: -80px; /* overlap hero bottom */
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 0.05);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .registration h2 {
+    font-weight: 800;
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #0f172a;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  label {
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 4px;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #cbd5e1;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  select:focus {
+    border-color: #2563eb;
+    outline: none;
+  }
+  button.submit-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.25s ease;
+  }
+  button.submit-btn:hover,
+  button.submit-btn:focus-visible {
+    background-color: #3b82f6;
+    outline: none;
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #0f172a;
+    color: #64748b;
+    padding: 32px 16px;
+    margin-top: auto;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  footer a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+  footer a:hover,
+  footer a:focus {
+    text-decoration: underline;
+  }
+
+  /* RESPONSIVE LAYOUT */
+  @media (min-width: 640px) {
+    nav.desktop-nav {
+      display: flex;
+    }
+    nav.mobile-nav {
+      display: none !important;
+    }
+    button.mobile-menu-button {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero h1 {
+      font-size: 3.75rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+    }
+    .registration {
+      margin-top: -120px;
+      padding: 64px 32px 96px;
+      max-width: 700px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-container container">
+    <div class="logo" aria-label="Pendaftaran TNI AL Dedi Riyanto">TNI AL - Dedi Riyanto</div>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#hero" tabindex="0">Beranda</a>
+      <a href="#registration" tabindex="0">Pendaftaran</a>
+      <a href="#info" tabindex="0">Informasi</a>
+      <a href="#contact" tabindex="0">Kontak</a>
+    </nav>
+    <button class="mobile-menu-button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-icons">menu</span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+    <a href="#hero">Beranda</a>
+    <a href="#registration">Pendaftaran</a>
+    <a href="#info">Informasi</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="hero" role="region" aria-label="Hero Section">
+    <h1>Pendaftaran TNI Angkatan Laut</h1>
+    <p>Mulai perjalanan karirmu bersama TNI AL dengan pendaftaran yang mudah dan terpercaya. Bergabunglah bersama kami untuk masa depan yang penuh prestasi dan kebanggaan.</p>
+    <button id="scrollToForm" aria-label="Daftar Sekarang">Daftar Sekarang</button>
+  </section>
+
+  <section class="registration" id="registration" role="region" aria-label="Formulir pendaftaran">
+    <h2>Formulir Pendaftaran</h2>
+    <form id="registrationForm" novalidate>
+      <div>
+        <label for="fullName">Nama Lengkap</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap" required aria-required="true" autocomplete="name" />
+      </div>
+      <div>
+        <label for="email">Alamat Email</label>
+        <input type="email" id="email" name="email" placeholder="email@example.com" required aria-required="true" autocomplete="email" />
+      </div>
+      <div>
+        <label for="phone">Nomor Telepon</label>
+        <input type="tel" id="phone" name="phone" placeholder="+62 81234567890" required aria-required="true" pattern="^\+?[\d\s\-]{8,}$" />
+      </div>
+      <div>
+        <label for="education">Pendidikan Terakhir</label>
+        <select id="education" name="education" required aria-required="true">
+          <option value="" hidden>Pilih pendidikan terakhir</option>
+          <option value="SMA">SMA / SMK</option>
+          <option value="Diploma">Diploma</option>
+          <option value="Sarjana">Sarjana</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn" aria-label="Kirim pendaftaran">Kirim Pendaftaran</button>
+    </form>
+  </section>
+
+  <section id="info" class="container" role="region" aria-label="Informasi Pendaftaran" style="max-width: 700px; margin: 0 auto 80px; padding: 0 16px;">
+    <h2 style="text-align:center; font-weight: 800; font-size: 1.75rem; margin-bottom: 24px; color: #0f172a;">Informasi Pendaftaran</h2>
+    <p>Setiap pendaftar diharapkan melengkapi data dengan benar dan mengikuti ketentuan pendaftaran yang berlaku. Harap persiapkan dokumen pendukung dan pastikan data yang dimasukkan valid.</p>
+    <ul style="color:#475569; font-size: 1rem; line-height: 1.5; list-style-position: inside; padding-left: 0;">
+      <li>Pastikan nomor telepon aktif untuk verifikasi.</li>
+      <li>Periksa email secara berkala untuk informasi penting.</li>
+      <li>Proses seleksi dilakukan secara transparan dan profesional.</li>
+      <li>Tanyakan informasi lebih lanjut melalui kontak di bawah.</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="container" role="region" aria-label="Kontak Kami" style="max-width: 700px; margin: 0 auto 64px; padding: 0 16px;">
+    <h2 style="text-align:center; font-weight: 800; font-size: 1.75rem; margin-bottom: 24px; color: #0f172a;">Kontak Kami</h2>
+    <p style="text-align:center; color:#475569; font-size: 1rem;">Jika ada pertanyaan, silakan hubungi kami di:</p>
+    <p style="text-align:center; font-weight: 600; font-size: 1.1rem; color: #0f172a;">
+      <span class="material-icons" aria-hidden="true" style="vertical-align: middle; font-size: 1.3rem;">phone</span> +62 812 3456 7890<br />
+      <span class="material-icons" aria-hidden="true" style="vertical-align: middle; font-size: 1.3rem;">email</span> info@dni-al-dediriyanto.id
+    </p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2024 TNI AL Dedi Riyanto. Semua hak cipta dilindungi.
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.querySelector('.mobile-menu-button');
+  const mobileNav = document.getElementById('mobile-menu');
+
+  mobileMenuButton.addEventListener('click', () => {
+    const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenuButton.setAttribute('aria-expanded', !expanded);
+    if(mobileNav.hasAttribute('hidden')){
+      mobileNav.removeAttribute('hidden');
+    } else {
+      mobileNav.setAttribute('hidden', '');
+    }
+  });
+
+  // Smooth scroll from Hero button to form
+  const scrollToFormBtn = document.getElementById('scrollToForm');
+  const registrationSection = document.getElementById('registration');
+
+  scrollToFormBtn.addEventListener('click', () => {
+    registrationSection.focus();
+    registrationSection.scrollIntoView({ behavior: 'smooth', block: 'start'});
+  });
+
+  // Form validation and submission
+  const registrationForm = document.getElementById('registrationForm');
+  registrationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    if(!registrationForm.checkValidity()){
+      registrationForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(registrationForm);
+    // Simulate saving and confirmation
+    alert(`Terima kasih, ${formData.get('fullName')}! Pendaftaran Anda telah diterima.`);
+    registrationForm.reset();
+  });
+</script>
+</body>
+</html>
+
